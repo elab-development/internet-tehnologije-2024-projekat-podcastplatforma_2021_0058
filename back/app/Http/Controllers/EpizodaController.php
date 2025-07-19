@@ -14,8 +14,71 @@ use Illuminate\Support\Facades\Auth;
 
 class EpizodaController extends Controller
 {
-    
+    public function store(Request $request)
+    {
 
+        $user = Auth::user();
+        $podkast = Podkast::findOrFail($request->podkast_id);
+        if($user->id==$podkast->kreator->id){
+           
+        Log::info('Request Data:', $request->all());
+        $request->validate([
+            'naziv' => 'required|string',
+            'podkast_id' => 'required|exists:podkasti,id',
+          
+        ]);
+    
+      
+        $epizoda = Epizoda::create([
+            'naziv' => $request->naziv,
+            'datum_i_vreme_odrzavanja' =>now(),
+            'podkast_id' => $request->podkast_id,
+            'fajl_id'=>null
+        ]);
+    
+        
+
+
+   
+        $fajl = $this->uploadFajl($request->file('file'), $request->naziv,$podkast);
+        $epizoda->fajl_id = $fajl->id;
+        $epizoda->save();
+    
+        return response()->json(['message' => 'Epizoda i fajl su uspešno sačuvani', 'epizoda' => $epizoda, 'fajl' => $fajl], 201);
+    }
+        else{
+            return response()->json([
+                'error' => 'Nemate dozvolu za cuvanje epizode.',
+            ], 403); 
+        }
+    }
+    
+    private function uploadFajl($file, $naziv,$podkast)
+    {
+        $originalExtension = $file->getClientOriginalExtension(); 
+        $filename = $naziv . '.' . $originalExtension;
+        $sanitizedNaziv = preg_replace('/[^a-zA-Z0-9_-]/', '_', $podkast->naziv);
+
+        $podcastPath = 'app/' . $sanitizedNaziv;
+        if (!Storage::exists($podcastPath)) {
+             Storage::makeDirectory($podcastPath);
+            }
+
+            $sanitizedNaziv = preg_replace('/[^a-zA-Z0-9_-]/', '_', $naziv);
+            $path = $podcastPath . '/'. $sanitizedNaziv;
+            if(!Storage::exists($path))
+            {
+                Storage::makeDirectory($path);
+            }
+        
+        $pathFile = $file->storeAs($path, $filename,"public");
+
+        return Fajl::create([
+            'naziv' => $filename,
+            'putanja' =>  Storage::url($pathFile),
+            'tip' => $file->getMimeType(),
+        ]);
+    }
 
     public function show($id)
     {

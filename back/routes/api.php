@@ -20,7 +20,7 @@ Route::get('/podkasti/{id}', [PodkastController::class, 'show']);
 Route::delete('podkasti/{id}',[PodkastController::class, 'destroy']);
 
 
-
+Route::post('/epizode', [EpizodaController::class, 'store']);
 Route::get('/epizode/{id}', [EpizodaController::class, 'show']);
 Route::delete('/epizode/{id}', [EpizodaController::class, 'destroy']);
 
