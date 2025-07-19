@@ -7,6 +7,7 @@ use App\Http\Controllers\PodkastController;
 use App\Http\Controllers\EpizodaController;
 use App\Http\Controllers\FajlController;
 use App\Http\Controllers\KategorijaController;
+use App\Http\Controllers\UserController;
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
@@ -31,4 +32,7 @@ Route::get('/epizode/audio/{id}', [FajlController::class, 'audio'])->name('epizo
 
 Route::get('/kategorije', [KategorijaController::class, 'index']);
 Route::post('/kategorije', [KategorijaController::class, 'store']);
+
+Route::get('/users/search', [UserController::class, 'search']);
+Route::get('/users', [UserController::class, 'index']);
 });     
