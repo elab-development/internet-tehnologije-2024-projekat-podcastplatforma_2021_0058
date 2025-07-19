@@ -36,7 +36,7 @@ const Register = () => {
       if (response.data.success) {
         console.log('Registracija uspešna');
         localStorage.setItem('auth_token', response.data.access_token);
-        navigate('/'); u
+        navigate('/'); 
       } else {
         setError('Greška pri registraciji: ' + JSON.stringify(response.data.data)); 
       }
