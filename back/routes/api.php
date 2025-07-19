@@ -35,4 +35,8 @@ Route::post('/kategorije', [KategorijaController::class, 'store']);
 
 Route::get('/users/search', [UserController::class, 'search']);
 Route::get('/users', [UserController::class, 'index']);
+Route::delete('/users/{userId}', [UserController::class, 'destroy']);
+Route::put('/users/{id}', [UserController::class, 'update']);
+
+
 });     

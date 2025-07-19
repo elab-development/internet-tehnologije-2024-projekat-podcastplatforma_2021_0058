@@ -39,7 +39,58 @@
         }
     }
 
-   
+   public function destroy($userId)
+    {
+        try {
+            
+            $user = User::findOrFail($userId);
+            $user->delete();
+          
+            return response()->json([
+                'message' => 'Korisnik uspešno obrisan.'
+            ], 200);
+
+        } catch (\Exception $e) {
+            return response()->json([
+                'error' => 'Došlo je do greške prilikom brisanja korisnika.',
+                'message' => $e->getMessage(),
+            ], 500);
+        }
+    }
+     
+
+
+    public function update(Request $request, $userId)
+    {
+
+        try {
+            
+
+            $user = Auth::user();
+            if($user->role!='administrator'){
+                return response()->json([
+                    'error' => 'Nemate dozvolu za azuriranje uloge korisnika.',
+                ], 403); 
+            }
+
+
+            $user = User::findOrFail($userId);
+            if ($user->role === 'gledalac') {
+                $user->role = 'kreator'; 
+                $user->save(); 
+                return response()->json(['message' => 'Uloga korisnika je promenjena na kreator.']);
+            }
+          
+          
+
+        } catch (\Exception $e) {
+            return response()->json([
+                'error' => 'Došlo je do greške prilikom promene uloge korisnika.',
+                'message' => $e->getMessage(),
+            ], 500);
+        }
+        
+    }
 
      
  }
