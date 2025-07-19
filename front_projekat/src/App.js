@@ -28,6 +28,7 @@ const App = () => {
           <Route path="/korisnici" element={<UserManagement />} />
               <Route path="/kategorije" element={<CategoryManagement/>}/>
           <Route path="/moji-podkasti" element={<MojiPodkasti/>}/>
+             <Route path="/youtube" element={<YouTubeChannelVideos/>}/>
         </Routes>
       </div>
     </Router>
