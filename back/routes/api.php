@@ -39,4 +39,6 @@ Route::delete('/users/{userId}', [UserController::class, 'destroy']);
 Route::put('/users/{id}', [UserController::class, 'update']);
 Route::get('/users/podkasti',[UserController::class, 'mojiPodkasti']);
 Route::get('/users/favorites',[UserController::class, 'getFavorites']);
+Route::post('/users/favorites/{id}',[UserController::class, 'addToFavorites']);
+Route::delete('/users/favorites/remove/{id}', [UserController::class, 'removeFavorite']);
 });     

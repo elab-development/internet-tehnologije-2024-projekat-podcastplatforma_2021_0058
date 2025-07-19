@@ -137,5 +137,53 @@
     }
 
 
+     public function addToFavorites($id)
+    {
+        try {
+           
+         
+            $user = Auth::user();
+            if($user->role!='gledalac'){
+                return response()->json([
+                    'error' => 'Nemate dozvolu za dodavanje podkasta u omiljene.',
+                ], 403); 
+            }
+            
+           
+            $podkast = Podkast::findOrFail($id);
+
+         
+            if (!$user->omiljeniPodkasti->contains($podkast->id)) {
+                $user->omiljeniPodkasti()->attach($podkast->id);
+            }
+
+           
+            return response()->json(['message' => 'Podkast je uspešno dodat u omiljene.'], 200);
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'Došlo je do greške prilikom dodavanja podkasta u omiljene.'], 500);
+        }
+    }
+
+
+    public function removeFavorite($id)
+    {
+        try {
+            
+
+            $user = Auth::user();
+            if($user->role!='gledalac'){
+                return response()->json([
+                    'error' => 'Nemate dozvolu za prikaz porudzbina.',
+                ], 403); 
+            }
+            
+            $podkast = Podkast::findOrFail($id);
+            $user->omiljeniPodkasti()->detach($podkast->id);
+            return response()->json(['message' => 'Podkast je uspešno uklonjen iz omiljenih.'], 200);
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'Došlo je do greške prilikom uklanjanja podkasta iz omiljenih.'], 500);
+        }
+    }
+
      
  }
