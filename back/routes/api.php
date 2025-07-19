@@ -37,6 +37,6 @@ Route::get('/users/search', [UserController::class, 'search']);
 Route::get('/users', [UserController::class, 'index']);
 Route::delete('/users/{userId}', [UserController::class, 'destroy']);
 Route::put('/users/{id}', [UserController::class, 'update']);
-
-
+Route::get('/users/podkasti',[UserController::class, 'mojiPodkasti']);
+Route::get('/users/favorites',[UserController::class, 'getFavorites']);
 });     

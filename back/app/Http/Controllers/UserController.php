@@ -92,5 +92,50 @@
         
     }
 
+
+    
+    public function mojiPodkasti(Request $request)
+    {
+
+        
+        $user = Auth::user();
+        if($user->role!='kreator'){
+            return response()->json([
+                'error' => 'Nemate dozvolu za prikaz podkasta.',
+            ], 403); 
+        }
+        $podkasti = $user->podkasti;  
+        return PodkastResource::collection($podkasti);
+    }
+
+
+
+
+    public function getFavorites(Request $request)
+    {
+        try {
+         
+            
+            $user = Auth::user();
+            if($user->role!='gledalac'){
+                return response()->json([
+                    'error' => 'Nemate dozvolu za prikaz omiljenih podkasta.',
+                ], 403); 
+            }
+       
+            $omiljeniPodkasti = $user->omiljeniPodkasti;
+            if ($omiljeniPodkasti->isEmpty()) {
+           
+                return response()->json(['message' => 'Nemate nijedan omiljeni podkast.'], 200);
+            }
+    
+     
+            return PodkastResource::collection($omiljeniPodkasti);
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'Došlo je do greške pri dohvatanju omiljenih podkasta.'], 500);
+        }
+    }
+
+
      
  }
