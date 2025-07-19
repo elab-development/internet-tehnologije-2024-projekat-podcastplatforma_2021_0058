@@ -4,7 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PodkastController;
-
+use App\Http\Controllers\EpizodaController;
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
@@ -20,5 +20,8 @@ Route::get('/podkasti/{id}', [PodkastController::class, 'show']);
 Route::delete('podkasti/{id}',[PodkastController::class, 'destroy']);
 
 
+
+Route::get('/epizode/{id}', [EpizodaController::class, 'show']);
+Route::delete('/epizode/{id}', [EpizodaController::class, 'destroy']);
 
 });     
