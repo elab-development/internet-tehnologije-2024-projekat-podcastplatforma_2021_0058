@@ -4,7 +4,9 @@ import Login from './Components/Login';
 import Register from './Components/Register';
 import PodkastiList from './Components/PodkastList';
 import CreatePodcast from './Components/CreatePodcast';
-
+import EpizodaDetalji from './Components/EpizodaDetalji';
+import NovaEpizodaForm from './Components/NovaEpizodaForm ';
+import EpizodeList from './Components/EpizodeList';
 
 const App = () => {
   return (
@@ -15,6 +17,9 @@ const App = () => {
           <Route path="/register" element={<Register />} />
            <Route path="/kreirajPodkast" element={<CreatePodcast />} />
           <Route path="/podkasti" element={<PodkastiList />} />
+            <Route path="/podkasti/:id" element={<EpizodeList />} />
+          <Route path="/epizode/:id" element={<EpizodaDetalji />} />
+          <Route path="/kreirajEpizodu" element={<NovaEpizodaForm/>} />
         </Routes>
       </div>
     </Router>
