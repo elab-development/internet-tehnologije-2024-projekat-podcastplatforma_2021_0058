@@ -9,6 +9,8 @@ import NovaEpizodaForm from './Components/NovaEpizodaForm ';
 import EpizodeList from './Components/EpizodeList';
 import OmiljeniPodkasti  from './Components/Favorites';
 import UserManagement from './Components/UserManagement';
+import CategoryManagement from './Components/CategoryManagement';
+import MojiPodkasti from './Components/MyPodcast';
 
 const App = () => {
   return (
@@ -24,6 +26,8 @@ const App = () => {
           <Route path="/kreirajEpizodu" element={<NovaEpizodaForm/>} />
           <Route path="/omiljeni" element={<OmiljeniPodkasti />} />
           <Route path="/korisnici" element={<UserManagement />} />
+              <Route path="/kategorije" element={<CategoryManagement/>}/>
+          <Route path="/moji-podkasti" element={<MojiPodkasti/>}/>
         </Routes>
       </div>
     </Router>
