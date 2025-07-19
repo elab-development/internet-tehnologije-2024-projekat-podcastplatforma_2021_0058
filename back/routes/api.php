@@ -6,7 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PodkastController;
 use App\Http\Controllers\EpizodaController;
 use App\Http\Controllers\FajlController;
-
+use App\Http\Controllers\KategorijaController;
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
@@ -28,4 +28,7 @@ Route::delete('/epizode/{id}', [EpizodaController::class, 'destroy']);
 
 
 Route::get('/epizode/audio/{id}', [FajlController::class, 'audio'])->name('epizoda.audio');
+
+Route::get('/kategorije', [KategorijaController::class, 'index']);
+Route::post('/kategorije', [KategorijaController::class, 'store']);
 });     
