@@ -110,6 +110,73 @@ class PodkastController extends Controller
     }
 
 
+    
+    public function show($id)
+    {
+        $podkast = Podkast::with('epizode')->findOrFail($id);
+        return new PodkastResource($podkast);
+    }
+
+
+    
+    public function destroy($id)
+{
+    try {
+        $podkast = Podkast::findOrFail($id);
+        $user = Auth::user();
+        if($user->role=='administrator' || $user->id==$podkast->kreator->id){
+        
+        if ($podkast->putanja_do_banera) {
+            $putanjaBanera = public_path($podkast->putanja_do_banera);
+            $putanja = str_replace('/', '\\', $putanjaBanera); 
+            $direktorijum = dirname($putanja);
+            Log::info($direktorijum);
+            if (File::exists($direktorijum)) {
+                File::deleteDirectory($direktorijum);
+            }
+        }
+
+       
+        $podkast->epizode->each(function ($epizoda) {
+           
+            if ($epizoda->fajl) {
+                $putanjaFajla = public_path($epizoda->fajl->putanja);
+                Log::info($putanjaFajla);
+                $putanja = str_replace('/', '\\', $putanjaFajla);
+                Log::info($putanja);
+
+                $direktorijum = dirname($putanja);
+                Log::info($direktorijum);
+                if (File::exists($direktorijum)) {
+                    File::deleteDirectory($direktorijum);
+                }
+
+           
+                $epizoda->fajl->delete();
+            }
+
+         
+            $epizoda->delete();
+        });
+
+       
+        $podkast->delete();
+
+        return response()->json(['message' => 'Podkast i sve njegove epizode su uspešno obrisani.'], 200);
+    }
+        else{
+            return response()->json([
+                'error' => 'Nemate dozvolu za brisanje podkasta.',
+            ], 403); 
+        }
+    } catch (\Exception $e) {
+        Log::error('Greška prilikom brisanja podkasta: ' . $e->getMessage());
+        return response()->json(['message' => 'Došlo je do greške prilikom brisanja podkasta.'], 500);
+    }
+}
+
+
+
 
 
     
