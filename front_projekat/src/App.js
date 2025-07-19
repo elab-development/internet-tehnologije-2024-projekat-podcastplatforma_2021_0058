@@ -7,6 +7,9 @@ import PodkastiList from './Components/PodkastList';
 import EpizodaDetalji from './Components/EpizodaDetalji';
 import NovaEpizodaForm from './Components/NovaEpizodaForm ';
 import EpizodeList from './Components/EpizodeList';
+import OmiljeniPodkasti  from './Components/Favorites';
+import UserManagement from './Components/UserManagement';
+
 const App = () => {
   return (
     <Router>
@@ -19,6 +22,8 @@ const App = () => {
           <Route path="/podkasti/:id" element={<EpizodeList />} />
           <Route path="/epizode/:id" element={<EpizodaDetalji />} />
           <Route path="/kreirajEpizodu" element={<NovaEpizodaForm/>} />
+          <Route path="/omiljeni" element={<OmiljeniPodkasti />} />
+          <Route path="/korisnici" element={<UserManagement />} />
         </Routes>
       </div>
     </Router>
