@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import styles from './EpizodaDetail.module.css';
 import Navbar from '../Components/Navbar';
+import Footer from "./Footer";
 import BackButton from './BackButton';
 
 const EpizodaDetalji = () => {
@@ -47,6 +48,7 @@ const EpizodaDetalji = () => {
           )}
         </div>
       </div>
+      <Footer/>
     </div>
   );
 };

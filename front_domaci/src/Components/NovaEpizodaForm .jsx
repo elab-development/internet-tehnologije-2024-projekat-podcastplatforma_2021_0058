@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Navbar from './Navbar';
+import Footer from "./Footer";
 import BackButton from './BackButton';
 
 const NovaEpizodaForm = () => {
@@ -43,6 +44,7 @@ const NovaEpizodaForm = () => {
                 </div>
                 <button type="submit">Sačuvaj Epizodu</button>
             </form>
+            <Footer/>
         </div>
     );
 };

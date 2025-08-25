@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import styles from './PodkastiList.module.css';
 import Navbar from '../Components/Navbar';
+import Footer from "./Footer";
 
 const MyPodcast = () => {
   const [podkasti, setPodkasti] = useState([]);
@@ -88,6 +89,7 @@ const MyPodcast = () => {
           </button>
         </div>
       </div>
+      <Footer/>
     </div>
   );
 };

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styles from './UserManagement.module.css';
 import Navbar from './Navbar';
-
+import Footer from "./Footer";
 const UserManagement = () => {
   const [users, setUsers] = useState([]);
   const [userRole, setUserRole] = useState('administrator');
@@ -160,6 +160,7 @@ const UserManagement = () => {
           </button>
         </div>
       </div>
+      <Footer/>
     </div>
   );
 };

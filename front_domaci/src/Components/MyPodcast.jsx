@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './PodkastiList.module.css';
 import Navbar from '../Components/Navbar';
+import Footer from "./Footer";
 import usePodcasts from './usePodcasts'; 
 
 const MyPodcast = () => {
@@ -64,6 +65,7 @@ const MyPodcast = () => {
           </button>
         </div>
       </div>
+      <Footer/>
     </div>
   );
 };

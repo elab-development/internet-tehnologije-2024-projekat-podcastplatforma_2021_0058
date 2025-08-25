@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from './Navbar';
 import styles from './CategoryManagement.module.css';
-
+import Footer from "./Footer";
 const CategoryManagement = () => {
     const [categories, setCategories] = useState([
         'Tehnologija', 'Putovanja', 'Zdravlje', 'Istorija', 'Nauka',
@@ -56,6 +56,7 @@ const CategoryManagement = () => {
                     </ul>
                 </div>
             </div>
+            <Footer/>
         </div>
     );
 };

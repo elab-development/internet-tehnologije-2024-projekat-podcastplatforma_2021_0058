@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styles from './CreatePodcast.module.css';
 import Navbar from './Navbar';
+import Footer from "./Footer";
 
 const CreatePodcast = () => {
     const [podcastName, setPodcastName] = useState('');
@@ -135,6 +136,7 @@ const CreatePodcast = () => {
                         <button type="submit">Kreiraj Podkast</button>
             </form>
         </div>
+        <Footer/>
         </div>
             );
 

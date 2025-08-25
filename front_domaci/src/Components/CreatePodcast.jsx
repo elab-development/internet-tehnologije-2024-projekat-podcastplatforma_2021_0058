@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from './Navbar';
+import Footer from "./Footer";
 import './CreatePodcast.module.css';
 
 const CreatePodcast = () => {
@@ -96,6 +97,7 @@ const CreatePodcast = () => {
                     <button type="submit">Kreiraj Podkast</button>
                 </form>
             </div>
+            <Footer/>
         </div>
     );
 };

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styles from './UserManagement.module.css';
+import Footer from "./Footer";
 import Navbar from './Navbar';
 
 const UserManagement = () => {
@@ -85,6 +86,7 @@ const UserManagement = () => {
           </tbody>
         </table>
       </div>
+      <Footer/>
     </div>
   );
 };

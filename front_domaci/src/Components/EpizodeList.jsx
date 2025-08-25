@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import styles from './EpizodeList.module.css';
 import Navbar from '../Components/Navbar';
+import Footer from "./Footer";
 import BackButton from '../Components/BackButton';
 import usePodcasts from './usePodcasts';
 
@@ -118,6 +119,7 @@ const EpizodeList = () => {
           )}
         </div>
       </div>
+      <Footer/>
     </div>
   );
 };

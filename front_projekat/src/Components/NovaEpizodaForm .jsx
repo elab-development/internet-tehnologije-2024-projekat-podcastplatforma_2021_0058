@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useLocation } from 'react-router-dom';
 import BackButton from './BackButton';
 import Navbar from './Navbar';
+import Footer from "./Footer";
 const NovaEpizodaForm = () => {
     const [naziv, setNaziv] = useState('');
     const [file, setFile] = useState(null);
@@ -64,6 +65,7 @@ const NovaEpizodaForm = () => {
                 </div>
                 <button type="submit">Sačuvaj Epizodu</button>
             </form>
+            <Footer/>
         </div>
     );
 };

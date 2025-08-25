@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Link, useParams, useLocation, useNavigate } from 'react-router-dom';
 import styles from './EpizodeList.module.css';
 import Navbar from '../Components/Navbar';
+import Footer from "./Footer";
 import BackButton from '../Components/BackButton';
 
 const EpizodeList = () => {
@@ -164,6 +165,7 @@ const EpizodeList = () => {
           ))}
         </div>
       </div>
+      <Footer/>
     </div>
   );
 };
